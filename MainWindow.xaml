@@ -1,0 +1,259 @@
+﻿<Window x:Class="Datagrid_Dashboard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        Title="TMS" Height="720" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
+    
+    <Border Background="AliceBlue" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--left section-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/> 
+                </Grid.RowDefinitions>
+                
+                <!--menu icons-->
+                <Button Margin="20 28 0 35" Style="{StaticResource topButton}">
+                    <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15"/>
+                </Button>
+
+                <Border Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 30">
+                    <DockPanel>
+                        <!--menu logo-->
+                        <Border Padding="3" Background="White" CornerRadius="100" Width="80" Height="80"
+                                DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="65 -30 0 0">
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Images/user.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Border>
+                        
+                        <!--menu titles-->
+                        <TextBlock Text="Shubham Dubey" Foreground="White" FontSize="18" FontWeight="Bold"
+                                   DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 0"/>
+                        <TextBlock Text="Software Developer" Foreground="White" FontSize="14" FontWeight="Normal"
+                                    DockPanel.Dock="Top" TextAlignment="Center" Margin="0"/>
+                        <TextBlock Text="(Santa Cruz, Mumbai)" Foreground="White" FontSize="12" FontWeight="Light"
+                                DockPanel.Dock="Top" TextAlignment="Center" Margin="5 0 0 10"/>
+                        <!--menu title-->
+                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
+                    
+                        <!--menu button-->
+                        <StackPanel DockPanel.Dock="Top">
+                            
+                            <Button Style="{StaticResource menuButton}" Background="#7b5cd6" Foreground="White" Width="173">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Dashboard"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="CalendarAccount" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Calender"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Leaf" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Environment"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="AccountMultiple" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Social"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="PoliceBadge" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Governance"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button Style="{StaticResource menuButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="PageLayoutBody" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Reports"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                            <Button Style="{StaticResource menuButton}" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Margin="15 0 15 20">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Logout"/>
+                                </StackPanel>
+                            </Button>
+                    </DockPanel>
+                </Border>
+            </Grid>
+            
+            <!--main section-->
+            <Grid Grid.Column="1" Margin="30 20 20 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!--search textbox-->
+                <Grid Width="300" HorizontalAlignment="Left">
+                    <TextBlock Text="Search here ..." Margin="20 0" VerticalAlignment="Center" 
+                               Foreground="#b0b9c6" IsHitTestVisible="False"
+                               Panel.ZIndex="1" Visibility="{Binding ElementName=txtSearch,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
+                    <TextBox x:Name="txtSearch" Style="{StaticResource textBoxSearch}"/>
+                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
+                                           Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
+                </Grid>
+                
+                <!--top buttons-->
+                <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc"
+                        HorizontalAlignment="Right">
+                    <Icon:PackIconMaterial Kind="Cog"/>
+                </Button>
+
+                <Button Style="{StaticResource topButton}" Margin="0 0 55 0"
+                        HorizontalAlignment="Right">
+                    <Icon:PackIconMaterial Kind="Bell"/>
+                </Button>
+                
+                <!--page title-->
+                <TextBlock Text="Dashboard" FontSize="22" FontWeight="SemiBold" Grid.Row="1"
+                           Margin="0 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
+                
+                <!--add button-->
+                <Button Grid.Row="1" Style="{StaticResource addButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Height="11" Width="11" Margin="0 1 8 0"/>
+                        <TextBlock Text="Add New Report"/>
+                    </StackPanel>
+                </Button>
+                
+                <!--seperator-->
+                <Separator Height="1" Grid.Row="3" Margin="0 -1  0 10" Background="#dae2ea"/>
+                
+                <!--table button-->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 10 0 0">
+                    <Button Content="All Reports" Style="{StaticResource tabButton}" BorderBrush="#784ff2"/>
+                    <Button Content="Published Reports" Style="{StaticResource tabButton}"/>
+                    <Button Content="Pending Reports" Style="{StaticResource tabButton}"/>
+                </StackPanel>
+                    
+                <!--counter title-->
+                <TextBlock Text="All Reports" FontSize="16" FontWeight="SemiBold" Grid.Row="4" HorizontalAlignment="Left"
+                           VerticalAlignment="Center"/>
+                <TextBlock Text="20" FontSize="16" FontWeight="SemiBold" Grid.Row="4" HorizontalAlignment="Left"
+                            VerticalAlignment="Center" Margin="100 0 0 0" Foreground="#784ff2"/>
+
+                <TextBlock Text="Filter By" FontSize="14" FontWeight="SemiBold" Grid.Row="4" HorizontalAlignment="Left"
+                            VerticalAlignment="Center" Margin="500 0 0 0" Foreground="#121518"/>
+
+                <!--filter textbox-->
+                <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">
+                    <TextBlock Text="Search in Reports ..." Margin="15 0" VerticalAlignment="Center" 
+                           Foreground="#b0b9c6" IsHitTestVisible="False"
+                           Panel.ZIndex="1" Visibility="{Binding ElementName=txtFilter,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
+                    <TextBox x:Name="txtFilter" Style="{StaticResource textBoxFilter}"/>
+                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center"
+                            Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
+                </Grid>
+                
+                <!--report datagrid-->
+                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="reportsDataGrid">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
+                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox/>
+                                </DataTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>
+                        </DataGridCheckBoxColumn>
+                        <DataGridTextColumn Header="#" IsReadOnly="True" Width="auto" CanUserResize="False"/>
+
+                        <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Height="25" Width="25" CornerRadius="50" Margin="0 0 10 0" Background="red">
+                                            <TextBlock Text="..." VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Foreground="White" Margin="0 0 0 1"/>
+                                        </Border>
+                                        <TextBlock Text="..." VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Type" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Start Date" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="End Date" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Status" IsReadOnly="True" Width="*"/>
+
+                        <DataGridTemplateColumn Header="Action" IsReadOnly="True" Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource gridEditButton}">
+                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                        <Button Style="{StaticResource gridRemoveButton}">
+                                            <Icon:PackIconMaterial Kind="TrashCanOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                <!--#region pagination datagrid-->
+                <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#dee4ec" BorderThickness="1"
+                        CornerRadius="5" Padding="5" Background="White" Margin="0 10 10 10">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource pagingButton}">
+                            <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
+                        </Button>
+
+                        <Rectangle Width="3" Fill="#dee4ec" Margin="3 7"/>
+
+                        <Button Content="1" Style="{StaticResource pagingButton}" Foreground="White" Background="#7950f2"/>
+                        <Button Content="2" Style="{StaticResource pagingButton}"/>
+                        <Button Content="3" Style="{StaticResource pagingButton}"/>
+
+                        <Rectangle Width="3" Fill="#dee4ec" Margin="3 7"/>
+
+                        <Button Style="{StaticResource pagingButton}">
+                            <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <!--#endregion-->
+                
+            </Grid>
+            
+        </Grid>        
+    </Border>
+</Window>
