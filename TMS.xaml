@@ -183,33 +183,34 @@
                 <!--report datagrid-->
                 <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="reportsDataGrid">
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
+                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                             <DataGridCheckBoxColumn.HeaderTemplate>
                                 <DataTemplate>
-                                    <CheckBox/>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
                                 </DataTemplate>
                             </DataGridCheckBoxColumn.HeaderTemplate>
                         </DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="#" IsReadOnly="True" Width="auto" CanUserResize="False"/>
+                        
+                        <DataGridTextColumn Header="#" IsReadOnly="True" Width="auto" CanUserResize="False" Binding="{Binding ID}"/>
 
                         <DataGridTemplateColumn Header="Name" IsReadOnly="True" Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Border Height="25" Width="25" CornerRadius="50" Margin="0 0 10 0" Background="red">
-                                            <TextBlock Text="..." VerticalAlignment="Center" HorizontalAlignment="Center"
+                                        <Border Height="25" Width="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                            <TextBlock Text="{Binding Letter}" VerticalAlignment="Center" HorizontalAlignment="Center"
                                                        Foreground="White" Margin="0 0 0 1"/>
                                         </Border>
-                                        <TextBlock Text="..." VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTextColumn Header="Type" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Start Date" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="End Date" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Status" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Type" IsReadOnly="True" Width="*" Binding="{Binding Type}"/>
+                        <DataGridTextColumn Header="Start Date" IsReadOnly="True" Width="*" Binding="{Binding StartDate}"/>
+                        <DataGridTextColumn Header="End Date" IsReadOnly="True" Width="*"  Binding="{Binding EndDate}"/>
+                        <DataGridTextColumn Header="Status" IsReadOnly="True" Width="*"  Binding="{Binding Status}"/>
 
                         <DataGridTemplateColumn Header="Action" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
@@ -218,7 +219,7 @@
                                         <Button Style="{StaticResource gridEditButton}">
                                             <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
-                                        <Button Style="{StaticResource gridRemoveButton}">
+                                        <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0">
                                             <Icon:PackIconMaterial Kind="TrashCanOutline" Style="{StaticResource gridButtonIcon}"/>
                                         </Button>
                                     </StackPanel>
